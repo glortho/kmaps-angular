@@ -1,0 +1,26 @@
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">Sort by:
+        <select ng-model="orderProp">
+          <option value="header">Alphabetical</option>
+          <option value="id">ID</option>
+        </select>
+
+      </div>
+      <div class="span10">
+        <!--Body content-->
+
+        <p>Total subjects: {{subjects.length}}, searching for: {{query}}</p>
+        <ul class='subjects'>
+          <li ng-repeat='subject in subjects | filter:query | orderBy:orderProp'>
+            <a href='#/subjects/{{subject.id}}'>{{subject.header}}</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+

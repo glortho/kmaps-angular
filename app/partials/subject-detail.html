@@ -1,0 +1,11 @@
+<h1>{{subject.header}}</h1>
+
+<p>{{subject.descriptions[0].title}}</p>
+
+<ul>
+  <li ng-repeat='child in children'>
+    <a href='#/subjects/{{child.id}}'>{{child.header}}</a>
+  </li>
+</ul>
+
+{{subject | json}}

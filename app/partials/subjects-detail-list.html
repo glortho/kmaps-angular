@@ -1,0 +1,40 @@
+  <div>
+    <ul class="breadcrumb">
+      <li ng-repeat="breadcrumb in breadcrumbs.getAll()">
+        <ng-switch on="$last">
+          <span ng-switch-when="true">{{breadcrumb.name}}</span>
+          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name}}</a></span>
+        </ng-switch>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container-fluid">
+    <h1>{{subject.header}}</h1>
+    <p>{{subject.descriptions[0].title}}</p>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+
+        Search: <input ng-model="query">Sort by:
+        <select ng-model="orderProp">
+          <option value="header">Alphabetical</option>
+          <option value="id">ID</option>
+        </select>
+
+     </div>
+      <div class="span10">
+        <!--Body content-->
+
+        <p>Total subjects: {{children.length}}, searching for: {{query}}</p>
+        <ul class='subjects'>
+          <li ng-repeat='child in children | filter:query | orderBy:orderProp'>
+            <a href='#/subjects/{{child.id}}'>{{child.header}}</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>

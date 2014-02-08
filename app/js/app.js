@@ -6,15 +6,11 @@ var subjectsApp = angular.module('subjectsApp', [
 subjectsApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/subjects', {
-        templateUrl: 'partials/subjects-list.html',
-        controller: 'SubjectsListCtrl'
-      }).
-      when('/subjects/:subjectId', {
-        templateUrl: 'partials/subject-detail.html',
-        controller: 'SubjectDetailCtrl'
-      }).
-      otherwise({
+      when('/subjects/:subjectId?', {
+        templateUrl: 'partials/subjects-detail-list.html',
+        controller: 'SubjectsCtrl'
+      })
+      .otherwise({
         redirectTo: '/subjects'
       });
   }

@@ -1,7 +1,6 @@
 var subjectsApp = angular.module('subjectsApp', [
   'ngRoute',
-  'subjectsControllers',
-  'subjectsServices'
+  'subjectsControllers'
 ]);
  
 subjectsApp.config(['$routeProvider',

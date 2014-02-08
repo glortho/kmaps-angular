@@ -1,13 +1,9 @@
-var subjectsControllers = angular.module('subjectsControllers', [
-  'services.breadcrumbs'
-]);
+var subjectsControllers = angular.module('subjectsControllers', []);
 
-subjectsControllers.controller('SubjectsCtrl', ['$scope', 'breadcrumbs', '$routeParams', '$http',
-  function($scope, breadcrumbs, $routeParams, $http) {
+subjectsControllers.controller('SubjectsCtrl', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
     $scope.subject = '';
-    $scope.breadcrumbs = breadcrumbs;
     if( $routeParams.subjectId ) {
-
       $http.get('http://subjects.kmaps.virginia.edu/features/' + $routeParams.subjectId + '.json').success(function(data) {
         $scope.subject = data.feature;
       });

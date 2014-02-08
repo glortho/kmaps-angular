@@ -1,9 +1,10 @@
   <div>
     <ul class="breadcrumb">
-      <li ng-repeat="breadcrumb in breadcrumbs.getAll()">
+      <li><a href='#/subjects'>Home</a></li>
+      <li ng-repeat="parent in subject.ancestors">
         <ng-switch on="$last">
-          <span ng-switch-when="true">{{breadcrumb.name}}</span>
-          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name}}</a></span>
+          <span ng-switch-when="true">{{parent.header}}</span>
+          <span ng-switch-default><a href="#/subjects/{{parent.id}}">{{parent.header}}</a></span>
         </ng-switch>
       </li>
     </ul>

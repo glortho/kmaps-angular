@@ -1,21 +1,15 @@
 var subjectsControllers = angular.module('subjectsControllers', []);
 
-subjectsControllers.controller('SubjectsCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
-    $scope.subject = '';
-    if( $routeParams.subjectId ) {
-      $http.get('http://subjects.kmaps.virginia.edu/features/' + $routeParams.subjectId + '.json').success(function(data) {
-        $scope.subject = data.feature;
-      });
+subjectsControllers.controller('SubjectsHomeCtrl', ['$scope', 'home',
+  function($scope, home) {
+    $scope.subject = {header: 'Root', descriptions: [{ title: 'All nodes' }]};
+    $scope.children = home.data.features;
+  }
+]);
 
-      $http.get('http://subjects.kmaps.virginia.edu/features/' + $routeParams.subjectId + '/children.json').success(function(data) {
-        $scope.children = data.features;
-      });
-    } else {
-      $scope.subject = {header: 'Root', descriptions: [{ title: 'All nodes' }]};
-      $http.get('http://subjects.kmaps.virginia.edu/features.json').success(function(data) {
-        $scope.children = data.features;
-      });
-    }
+subjectsControllers.controller('SubjectsCtrl', ['$scope', 'subject', 'children',
+  function($scope, subject, children) {
+    $scope.subject = subject.data.feature;
+    $scope.children = children.data.features;
   }
 ]);
